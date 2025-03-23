@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Slider</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(145deg, #f3f4f6, #0e0700ef);
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+
+        .slider-container {
+            width: 90%;
+            max-width: 600px;
+            text-align: center;
+            position: relative;
+        }
+
+        img {
+            width: 70%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #3a72ba;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #e23003;
+        }
+
+        .prev {
+            left: 5px;
+        }
+
+        .next {
+            right: 10px;
+        }
+
+        @media (max-width: 480px) {
+            img {
+                width: 90%;
+            }
+
+            .btn {
+                padding: 3px 10px;
+                font-size: 10px;
+            }
+
+            .prev {
+                left: 5px;
+            }
+
+            .next {
+                right: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="slider-container">
+    <button class="btn prev" onclick="prevImage()">Previous</button>
+    <img id="slider" src="" alt="Image Slider">
+    <button class="btn next" onclick="nextImage()">Next</button>
+</div>
+
+<script>
+    const images = [
+        'developer.png',
+         'developer1.png',
+         'developer2.png'
+    ];
+
+    let currentIndex = 0;
+
+    const slider = document.getElementById('slider');
+
+    function showImage(index) {
+        slider.src = images[index];
+    }
+
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    }
+
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    }
+    showImage(currentIndex);
+</script>
+
+</body>
+</html>
